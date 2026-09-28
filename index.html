@@ -3,10 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SquashCode</title>
+    <title>SquashCode — Digital Marketing for Real Estate</title>
+    <meta name="description" content="SquashCode is a performance marketing agency for real estate. Meta & Google Ads, lead funnels, CRM automation and SEO that turn project launches into site visits." />
+    <meta name="theme-color" content="#05051c" />
+    <meta property="og:title" content="SquashCode — Digital Marketing for Real Estate" />
+    <meta property="og:description" content="Performance marketing that turns project launches into site visits." />
+    <meta property="og:image" content="/logo.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Static copy of the contact form so Netlify Forms can detect it at deploy time. -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <select name="budget"><option value="">-</option></select>
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
