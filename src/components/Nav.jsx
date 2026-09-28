@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, useGSAP, ScrollTrigger, prefersReducedMotion } from '../lib/gsap'
-import { scrollToHash } from '../lib/smoothScroll'
+import { useGo } from '../lib/navigation'
 import { nav } from '../content'
 import MagneticButton from './MagneticButton'
 
@@ -45,18 +45,19 @@ export default function Nav() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  const navigate = useGo()
   const go = (e, href) => {
-    e.preventDefault()
     setOpen(false)
-    scrollToHash(href)
+    navigate(href, e)
   }
 
   return (
     <>
       <header ref={ref} className="nav">
         <div className="container nav__inner">
-          <a href="#home" className="nav__logo" onClick={(e) => go(e, '#home')} aria-label="SquashCode home">
-            <img src="/logo-dark.png" alt="SquashCode" width="1033" height="183" />
+          <a href="/" className="nav__logo" onClick={(e) => go(e, '/')} aria-label="SquashCode home">
+            <img className="logo-on-dark" src="/logo-dark.png" alt="SquashCode" width="1033" height="183" />
+            <img className="logo-on-light" src="/logo.png" alt="" width="1033" height="183" />
           </a>
           <nav className="nav__links" aria-label="Primary">
             {nav.map((item) => (
@@ -66,7 +67,7 @@ export default function Nav() {
             ))}
           </nav>
           <div className="nav__cta">
-            <MagneticButton href="#contact" variant="small" icon={null}>
+            <MagneticButton href="/#contact" variant="small" icon={null}>
               Book a call
             </MagneticButton>
           </div>
@@ -85,7 +86,7 @@ export default function Nav() {
 
       <div id="mobile-menu" ref={menuRef} className="mobile-menu" aria-hidden={!open}>
         <nav aria-label="Mobile">
-          {[...nav, { label: 'Contact', href: '#contact' }].map((item) => (
+          {[...nav, { label: 'Contact', href: '/#contact' }].map((item) => (
             <div key={item.href} className="mobile-menu__row">
               <a href={item.href} className="mobile-menu__link" onClick={(e) => go(e, item.href)} tabIndex={open ? 0 : -1}>
                 {item.label}

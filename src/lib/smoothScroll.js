@@ -5,11 +5,13 @@ import { gsap, ScrollTrigger, prefersReducedMotion } from './gsap'
 let lenis = null
 
 // Scrolls to an in-page anchor, through Lenis when it is running.
-export function scrollToHash(hash) {
+export function scrollToHash(hash, { immediate = false } = {}) {
   const target = document.querySelector(hash)
   if (!target) return
-  if (lenis) lenis.scrollTo(target, { offset: -70, duration: 1.4 })
-  else target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
+  const top = hash === 'body' ? 0 : -70
+  if (lenis) lenis.scrollTo(hash === 'body' ? 0 : target, { offset: top, duration: 1.4, immediate })
+  else if (hash === 'body') window.scrollTo({ top: 0, behavior: immediate ? 'auto' : 'smooth' })
+  else target.scrollIntoView({ behavior: immediate || prefersReducedMotion() ? 'auto' : 'smooth' })
 }
 
 export function getLenis() {
