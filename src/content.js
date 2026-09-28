@@ -1,10 +1,12 @@
 // All home-page copy lives here so it can be edited without touching layout code.
+// About page copy lives in aboutContent.js.
 
 export const nav = [
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Results', href: '#results' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Process', href: '/#process' },
+  { label: 'Results', href: '/#results' },
+  { label: 'About', href: '/about' },
+  { label: 'FAQ', href: '/#faq' },
 ]
 
 export const hero = {

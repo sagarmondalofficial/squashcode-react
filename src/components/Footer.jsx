@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { gsap, useGSAP, SplitText } from '../lib/gsap'
+import { useGo } from '../lib/navigation'
 import { scrollToHash } from '../lib/smoothScroll'
 import { nav } from '../content'
 import Icon from './Icon'
@@ -32,27 +33,25 @@ export default function Footer() {
     { scope: ref }
   )
 
-  const go = (e, href) => {
-    e.preventDefault()
-    scrollToHash(href)
-  }
+  const go = useGo()
 
   return (
     <footer ref={ref} className="footer">
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
-            <img src="/logo-dark.png" alt="SquashCode" width="1033" height="183" />
+            <img className="logo-on-dark" src="/logo-dark.png" alt="SquashCode" width="1033" height="183" />
+            <img className="logo-on-light" src="/logo.png" alt="" width="1033" height="183" />
             <p>Digital marketing built for real estate — from first ad to final site visit.</p>
           </div>
           <nav className="footer__nav" aria-label="Footer">
-            {[...nav, { label: 'Contact', href: '#contact' }].map((item) => (
-              <a key={item.href} href={item.href} onClick={(e) => go(e, item.href)}>
+            {[...nav, { label: 'Contact', href: '/#contact' }].map((item) => (
+              <a key={item.href} href={item.href} onClick={(e) => go(item.href, e)}>
                 {item.label}
               </a>
             ))}
           </nav>
-          <button className="footer__top-btn" onClick={() => scrollToHash('#home')} aria-label="Back to top">
+          <button className="footer__top-btn" onClick={() => scrollToHash('body')} aria-label="Back to top">
             <Icon name="arrowUp" size={20} />
           </button>
         </div>

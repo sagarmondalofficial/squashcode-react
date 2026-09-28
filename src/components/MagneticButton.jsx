@@ -1,11 +1,12 @@
 import { useRef } from 'react'
 import { gsap, useGSAP } from '../lib/gsap'
-import { scrollToHash } from '../lib/smoothScroll'
+import { useGo } from '../lib/navigation'
 import Icon from './Icon'
 
 // A button that leans toward the cursor. Renders an <a> when given an href.
 export default function MagneticButton({ href, children, variant = 'primary', icon = 'arrow', type, disabled }) {
   const ref = useRef(null)
+  const go = useGo()
 
   useGSAP(
     () => {
@@ -45,12 +46,7 @@ export default function MagneticButton({ href, children, variant = 'primary', ic
   )
 
   if (href) {
-    const onClick = (e) => {
-      if (href.startsWith('#')) {
-        e.preventDefault()
-        scrollToHash(href)
-      }
-    }
+    const onClick = (e) => go(href, e)
     return (
       <a ref={ref} href={href} className={className} onClick={onClick}>
         {content}

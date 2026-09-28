@@ -96,6 +96,11 @@ h3 {
   margin: 0;
 }
 
+h1,
+h2 {
+  text-wrap: balance;
+}
+
 h1 em,
 h2 em {
   font-style: normal;
@@ -1267,4 +1272,82 @@ h2 em {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ---------- Light theme (set per page via <html data-theme="light">) ---------- */
+
+.logo-on-light {
+  display: none;
+}
+
+[data-theme='light'] {
+  --bg: #f7f3ee;
+  --bg-2: #efe8df;
+  --surface: rgba(0, 0, 51, 0.035);
+  --surface-2: rgba(0, 0, 51, 0.06);
+  --border: rgba(0, 0, 51, 0.1);
+  --text: #0a0a33;
+  --muted: #5d5b78;
+  --pink-2: #c81d45;
+  color-scheme: light;
+}
+[data-theme='light'] body::after {
+  opacity: 0.035;
+}
+[data-theme='light'] .logo-on-dark {
+  display: none;
+}
+[data-theme='light'] .logo-on-light {
+  display: block;
+}
+[data-theme='light'] .nav--solid {
+  background: rgba(247, 243, 238, 0.82);
+}
+[data-theme='light'] .nav__link span::after {
+  color: var(--text);
+}
+[data-theme='light'] .nav__burger {
+  background: rgba(0, 0, 51, 0.04);
+}
+[data-theme='light'] .nav__burger span {
+  background: var(--text);
+}
+[data-theme='light'] .mobile-menu {
+  background: radial-gradient(circle at 100% 0%, #fbd9e1, var(--bg) 60%);
+}
+[data-theme='light'] .btn::before {
+  background: var(--navy);
+}
+[data-theme='light'] .btn--primary:hover,
+[data-theme='light'] .btn--small:hover,
+[data-theme='light'] .btn--ghost:hover {
+  color: #fff;
+}
+[data-theme='light'] .btn--primary {
+  box-shadow: 0 12px 34px -12px rgba(235, 47, 91, 0.6);
+}
+[data-theme='light'] .btn--ghost {
+  border-color: rgba(0, 0, 51, 0.2);
+  background: transparent;
+}
+[data-theme='light'] .cursor {
+  border-color: rgba(0, 0, 51, 0.45);
+}
+[data-theme='light'] .cursor--hot {
+  border-color: transparent;
+  background: rgba(235, 47, 91, 0.16);
+}
+[data-theme='light'] .footer__nav a:hover {
+  color: var(--text);
+}
+[data-theme='light'] .footer__top-btn:hover {
+  color: #fff;
+}
+[data-theme='light'] .footer__wordmark {
+  color: rgba(0, 0, 51, 0.03);
+  -webkit-text-stroke-color: rgba(0, 0, 51, 0.16);
+}
+
+body {
+  transition: background-color 0.6s var(--ease), color 0.6s var(--ease);
 }
